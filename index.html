@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uhab - Український софт для стрімерів</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="grid-lines"></div>
+<div class="g1"></div>
+<div class="g2"></div>
+<div class="g3"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="nav">
+    <div class="logo">uHab</div>
+    <div class="status-pill">
+      <span class="dot-live"></span>
+      В РОЗРОБЦІ
+    </div>
+    <div class="nav-right" style="display:flex;gap:8px;">
+      <a href="https://t.me" target="_blank" style="background:rgba(255,255,255,0.04);border:1px solid var(--border);color:rgba(255,255,255,0.6);padding:8px 16px;font-size:12px;font-family:'JetBrains Mono',monospace;letter-spacing:1px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">TELEGRAM →</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section style="padding: 140px 0 60px; position:relative;z-index:1;">
+<div class="wrap">
+  <div style="max-width:860px;" class="fi">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.3);text-transform:uppercase;background:var(--card);border:1px solid var(--border);padding:5px 12px;">
+        // COMING SOON
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);">—</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--accent);">СКОРО РЕЛІЗ</div>
+    </div>
+
+    <h1 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,12vw,180px);line-height:0.88;letter-spacing:2px;">
+      <span style="background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,0.6) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">UHAB</span><br>
+      <span style="background:linear-gradient(135deg,var(--accent) 0%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">UKRAINE SOFT</span>
+    </h1>
+
+    <p style="margin-top:28px;font-size:17px;color:rgba(255,255,255,0.48);line-height:1.75;max-width:560px;">
+      uHab знаходиться в активній розробці. Ми будуємо найкращий інструмент для стрімерів — кастомні віджети, ігрові інтеграції, розумне управління сценами.
+    </p>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div style="margin-top:52px;" class="fi" style="transition-delay:0.15s;">
+    <div class="s-label">ОЧІКУВАНИЙ РЕЛІЗ</div>
+    <div class="countdown-block" id="countdown">
+      <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-label">Днів</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-label">Годин</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-label">Хвилин</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-label">Секунд</span></div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div style="margin-top:40px;" class="fi">
+    <div class="progress-wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <div>
+          <div class="s-label" style="margin-bottom:4px;">ПРОГРЕС РОЗРОБКИ</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:rgba(255,255,255,0.9);">ALPHA BUILD — 67% ЗАВЕРШЕНО</div>
+        </div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:2px;background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">67%</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+        <div class="progress-glow"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:12px;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);">СТАРТ — ЖОВТ 2024</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);">РЕЛІЗ — 2025</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- NOTIFY + SOCIAL -->
+<section style="padding:20px 0 60px;position:relative;z-index:1;">
+<div class="wrap">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;" class="fi">
+
+    <!-- EMAIL NOTIFY -->
+    <div class="card" style="padding:36px;">
+      <div class="s-label">СПОВІЩЕННЯ</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:2px;color:#fff;margin-bottom:10px;">
+        ДІЗНАЙСЯ ПЕРШИМ
+      </h3>
+      <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:24px;">
+        Залиш email — надішлемо повідомлення коли uHab вийде у реліз. Без спаму, лише одне повідомлення.
+      </p>
+      <div style="display:flex;gap:2px;" id="emailForm">
+        <input class="email-input" type="email" placeholder="твій@email.com" id="emailInput">
+        <button class="btn-primary" onclick="handleSubscribe()">ПІДПИСАТИСЬ</button>
+      </div>
+      <div id="emailSuccess" style="display:none;padding:14px 18px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);letter-spacing:1px;">
+        ✓ ПІДПИСКУ ОФОРМЛЕНО — ЧЕКАЙ НА ЛИСТ
+      </div>
+    </div>
+
+    <!-- SOCIALS -->
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <a href="https://youtube.com" target="_blank" class="soc-btn soc-yt">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="font-size:24px;">▶</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;">YOUTUBE</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);">Девлог та огляди</div>
+          </div>
+        </div>
+        <span class="arr" style="color:rgba(255,0,0,0.5);">→</span>
+      </a>
+      <a href="https://t.me" target="_blank" class="soc-btn soc-tg">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="font-size:24px;">📢</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;">TELEGRAM CHANNEL</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);">Новини розробки</div>
+          </div>
+        </div>
+        <span class="arr" style="color:rgba(41,182,246,0.6);">→</span>
+      </a>
+      <a href="https://t.me" target="_blank" class="soc-btn soc-tg">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="font-size:24px;">💬</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;">TELEGRAM CHAT</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);">Спільнота та підтримка</div>
+          </div>
+        </div>
+        <span class="arr" style="color:rgba(41,182,246,0.6);">→</span>
+      </a>
+      <a href="https://tiktok.com" target="_blank" class="soc-btn soc-tt">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="font-size:24px;">♪</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;">TIKTOK</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);">Короткі кліпи</div>
+          </div>
+        </div>
+        <span class="arr" style="color:rgba(255,255,255,0.3);">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ROADMAP / FEATURES BENTO -->
+<section style="padding:60px 0;position:relative;z-index:1;">
+<div class="wrap">
+  <div style="margin-bottom:36px;" class="fi">
+    <div class="s-label">// ROADMAP</div>
+    <h2 class="s-title">ЩО БУДУЄМО</h2>
+  </div>
+
+  <div class="bento fi">
+    <!-- DONE: Core Engine -->
+    <div class="card" style="grid-column:span 5;padding:32px;min-height:200px;">
+      <div class="done-badge">✓ ГОТОВО</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:#fff;margin-bottom:10px;">
+        ЯДРО ПРОГРАМИ
+      </h3>
+      <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;">
+        Основний рушій, підключення до OBS WebSocket, система плагінів та менеджер тем. Стабільно працює.
+      </p>
+      <div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);padding:4px 10px;">OBS WebSocket</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);padding:4px 10px;">Plugin API</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);padding:4px 10px;">Theme Engine</span>
+      </div>
+    </div>
+
+    <!-- DONE: Widget System -->
+    <div class="card" style="grid-column:span 7;padding:32px;">
+      <div class="done-badge">✓ ГОТОВО</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:#fff;margin-bottom:10px;">
+        СИСТЕМА ВІДЖЕТІВ
+      </h3>
+      <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;max-width:460px;">
+        Редактор віджетів з drag-and-drop, підтримка HTML/CSS шаблонів, живий превью та бібліотека готових пресетів.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:20px;">
+        <div style="background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);padding:10px;text-align:center;">
+          <div style="font-size:18px;margin-bottom:4px;">🎉</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);">ALERTS</div>
+        </div>
+        <div style="background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.2);padding:10px;text-align:center;">
+          <div style="font-size:18px;margin-bottom:4px;">💬</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);">CHAT</div>
+        </div>
+        <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);padding:10px;text-align:center;">
+          <div style="font-size:18px;margin-bottom:4px;">🎯</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);">GOALS</div>
+        </div>
+        <div style="background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.2);padding:10px;text-align:center;">
+          <div style="font-size:18px;margin-bottom:4px;">⏱</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);">TIMERS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WIP: Donation -->
+    <div class="card" style="grid-column:span 4;padding:32px;">
+      <div class="wip-badge">⚡ В РОЗРОБЦІ</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:#fff;margin-bottom:10px;">
+        ДОНАТ ІНТЕГРАЦІЇ
+      </h3>
+      <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;">DonationAlerts, Twitch Bits, YouTube SuperChat та Monobank — все підключається в кілька кліків.</p>
+      <div style="margin-top:16px;height:3px;background:rgba(255,165,0,0.1);">
+        <div style="height:100%;width:75%;background:linear-gradient(90deg,#FFA500,rgba(255,165,0,0.3));"></div>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,165,0,0.7);margin-top:6px;">75% — TESTING PHASE</div>
+    </div>
+
+    <!-- WIP: Game Integrations -->
+    <div class="card" style="grid-column:span 4;padding:32px;">
+      <div class="wip-badge">⚡ В РОЗРОБЦІ</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:#fff;margin-bottom:10px;">
+        ІГРОВІ ДАНІ
+      </h3>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0;">
+        <span style="font-size:16px;" title="CS2">🎯</span>
+        <span style="font-size:16px;" title="Dota 2">⚔️</span>
+        <span style="font-size:16px;" title="Valorant">🔫</span>
+        <span style="font-size:16px;" title="Apex">🦊</span>
+        <span style="font-size:16px;" title="Minecraft">⛏️</span>
+        <span style="font-size:16px;" title="More">+</span>
+      </div>
+      <div style="margin-top:12px;height:3px;background:rgba(255,165,0,0.1);">
+        <div style="height:100%;width:40%;background:linear-gradient(90deg,#FFA500,rgba(255,165,0,0.3));"></div>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,165,0,0.7);margin-top:6px;">40% — IN PROGRESS</div>
+    </div>
+
+    <!-- PLANNED: Scene Switcher -->
+    <div class="card" style="grid-column:span 4;padding:32px;">
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(100,100,255,0.08);border:1px solid rgba(100,100,255,0.2);padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(150,150,255,0.8);text-transform:uppercase;margin-bottom:12px;">
+        📋 ЗАПЛАНОВАНО
+      </div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:#fff;margin-bottom:10px;">
+        SCENE SWITCHER
+      </h3>
+      <p style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;">Розумне авто-перемикання сцен на основі подій та тригерів із ігор.</p>
+      <div style="margin-top:16px;height:3px;background:rgba(100,100,255,0.1);">
+        <div style="height:100%;width:10%;background:linear-gradient(90deg,rgba(150,150,255,0.6),rgba(150,150,255,0.2));"></div>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(150,150,255,0.6);margin-top:6px;">10% — PLANNING</div>
+    </div>
+
+    <!-- DEV LOG WIDE -->
+    <div class="card" style="grid-column:span 12;padding:32px;">
+      <div class="s-label">ОСТАННІЙ ДЕВЛОГ</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:12px;">
+        <div style="padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--border);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.25);margin-bottom:8px;">15 ЛИП 2025</div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:6px;">Запуск Alpha-тестування</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6;">Перша група тестерів отримала доступ до alpha-білду. Зібрано 200+ звітів про баги.</div>
+        </div>
+        <div style="padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--border);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.25);margin-bottom:8px;">02 ЛИП 2025</div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:6px;">Система віджетів завершена</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6;">Повністю переписаний редактор. Drag-and-drop, реальний час, HTML-шаблони.</div>
+        </div>
+        <div style="padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--border);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.25);margin-bottom:8px;">15 ЧЕР 2025</div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:6px;">DonationAlerts інтеграція</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6;">Підключення до DA API. Алерти, цілі, медіа-платежі — все стабільно.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- MONOBANK SUPPORT -->
+<section style="padding:60px 0;position:relative;z-index:1;">
+<div class="wrap fi">
+  <div class="mono-wrap">
+    <div style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;">
+      <div>
+        <div class="s-label">// ПІДТРИМКА РОЗРОБКИ</div>
+        <h2 class="s-title">SUPPORT<br>DEVELOPMENT</h2>
+        <p style="font-size:15px;color:rgba(255,255,255,0.45);margin-top:16px;line-height:1.8;max-width:480px;">
+          uHab — повністю безкоштовний проект. Розробляється у вільний час. Якщо хочеш прискорити реліз — підтримай донатом. Кожна гривня йде напряму в розробку.
+        </p>
+        <div style="display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap;">
+          <button class="btn-primary" style="padding:14px 36px;">
+            💳&nbsp; ЗАДОНАТИТИ
+          </button>
+          <div style="display:flex;gap:20px;">
+            <div>
+              <div class="stat-n">₴14,280</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:2px;">ЗІБРАНО</div>
+            </div>
+            <div style="width:1px;height:50px;background:var(--border);"></div>
+            <div>
+              <div class="stat-n">238</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:2px;">ДОНАТЕРІВ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- QR -->
+      <div style="text-align:center;">
+        <div style="display:inline-block;padding:16px;background:#fff;">
+          <svg width="120" height="120" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+            <rect fill="#000" x="0" y="0" width="3" height="3"/>
+            <rect fill="#fff" x="1" y="1" width="1" height="1"/>
+            <rect fill="#000" x="6" y="0" width="3" height="3"/>
+            <rect fill="#fff" x="7" y="1" width="1" height="1"/>
+            <rect fill="#000" x="0" y="6" width="3" height="3"/>
+            <rect fill="#fff" x="1" y="7" width="1" height="1"/>
+            <rect fill="#000" x="4" y="0" width="1" height="1"/>
+            <rect fill="#000" x="3" y="1" width="2" height="1"/>
+            <rect fill="#000" x="4" y="2" width="1" height="1"/>
+            <rect fill="#000" x="3" y="3" width="1" height="3"/>
+            <rect fill="#000" x="5" y="3" width="1" height="1"/>
+            <rect fill="#000" x="6" y="4" width="1" height="2"/>
+            <rect fill="#000" x="8" y="4" width="1" height="1"/>
+            <rect fill="#000" x="4" y="5" width="1" height="1"/>
+            <rect fill="#000" x="5" y="6" width="2" height="1"/>
+            <rect fill="#000" x="4" y="7" width="1" height="2"/>
+            <rect fill="#000" x="6" y="8" width="3" height="1"/>
+          </svg>
+        </div>
+        <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:2px;">MONOBANK QR</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid var(--border);padding:40px 0;position:relative;z-index:1;">
+<div class="wrap">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
+    <div>
+      <div class="logo" style="font-size:24px;margin-bottom:6px;">uHab</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);">© 2025 · Зроблено для стрімерів України</div>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);text-align:center;line-height:2;">
+      support@uhab.app<br>
+      <span style="color:rgba(255,255,255,0.1);">Windows 10/11 · OBS 29+</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:2px;">СТАТУС СЕРВІСІВ</div>
+      <div style="display:flex;gap:10px;">
+        <div style="display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);">
+          <div style="width:5px;height:5px;background:var(--green);border-radius:50%;"></div>API
+        </div>
+        <div style="display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);">
+          <div style="width:5px;height:5px;background:var(--green);border-radius:50%;"></div>CDN
+        </div>
+        <div style="display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);">
+          <div style="width:5px;height:5px;background:#FFA500;border-radius:50%;"></div>BUILD
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer>
+
+<script>
+  // COUNTDOWN — target date
+  const target = new Date('2025-09-01T00:00:00');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('cd-d').textContent = '00';
+      document.getElementById('cd-h').textContent = '00';
+      document.getElementById('cd-m').textContent = '00';
+      document.getElementById('cd-s').textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // EMAIL SUBSCRIBE
+  function handleSubscribe() {
+    const val = document.getElementById('emailInput').value.trim();
+    if (!val || !val.includes('@')) {
+      document.getElementById('emailInput').style.borderColor = 'rgba(255,80,80,0.6)';
+      document.getElementById('emailInput').style.boxShadow = '0 0 0 2px rgba(255,80,80,0.1)';
+      setTimeout(() => {
+        document.getElementById('emailInput').style.borderColor = '';
+        document.getElementById('emailInput').style.boxShadow = '';
+      }, 1500);
+      return;
+    }
+    document.getElementById('emailForm').style.display = 'none';
+    document.getElementById('emailSuccess').style.display = 'block';
+  }
+  document.getElementById('emailInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleSubscribe();
+  });
+
+  // SCROLL FADE-IN
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (e.target.dataset.d || 0) + 's';
+        e.target.classList.add('in');
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fi').forEach((el, i) => io.observe(el));
+
+  // HEADER BLUR
+  window.addEventListener('scroll', () => {
+    document.querySelector('header').style.background =
+      window.scrollY > 30 ? 'rgba(8,8,10,0.95)' : 'rgba(8,8,10,0.8)';
+  });
+</script>
+</body>
+</html>
