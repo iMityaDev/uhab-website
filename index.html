@@ -3,11 +3,347 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Uhab - Український софт для стрімерів</title>
+<title>uHab — Coming Soon</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css">
+<style>
+  :root {
+    --bg: #08080A;
+    --card: #101012;
+    --border: rgba(255,255,255,0.07);
+    --purple: #7C3AED;
+    --blue: #2563EB;
+    --accent: #A78BFA;
+    --cyan: #22D3EE;
+    --green: #10B981;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NOISE */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px;
+  }
+
+  /* AMBIENT GLOW */
+  .g1 {
+    position: fixed; width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+    top: -200px; left: -200px; pointer-events: none; z-index: 0;
+    animation: drift1 10s ease-in-out infinite;
+  }
+  .g2 {
+    position: fixed; width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,99,235,0.14) 0%, transparent 70%);
+    bottom: -100px; right: -100px; pointer-events: none; z-index: 0;
+    animation: drift2 13s ease-in-out infinite;
+  }
+  .g3 {
+    position: fixed; width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(34,211,238,0.07) 0%, transparent 70%);
+    top: 40%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; z-index: 0;
+    animation: drift1 16s ease-in-out infinite reverse;
+  }
+  @keyframes drift1 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(30px,-40px);} }
+  @keyframes drift2 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(-25px,35px);} }
+
+  /* HEADER */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,8,10,0.8); backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav {
+    max-width: 1400px; margin: 0 auto; padding: 0 32px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px;
+    background: linear-gradient(135deg, #fff 0%, #A78BFA 50%, #22D3EE 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .status-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25);
+    padding: 5px 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px;
+    color: var(--green); text-transform: uppercase;
+  }
+  .dot-live { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 1.8s infinite; }
+  @keyframes blink { 0%,100%{opacity:1;box-shadow:0 0 6px var(--green);} 50%{opacity:0.3;box-shadow:none;} }
+
+  /* MAIN LAYOUT */
+  .wrap { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 0 32px; }
+
+  /* COUNTDOWN */
+  .countdown-block {
+    display: flex; gap: 2px; align-items: stretch;
+  }
+  .cd-unit {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 20px 28px; text-align: center; flex: 1;
+    position: relative; overflow: hidden;
+  }
+  .cd-unit::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.6s ease;
+  }
+  .cd-unit:hover::after { transform: scaleX(1); }
+  .cd-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 64px; letter-spacing: 2px; line-height: 1;
+    background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.55) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    display: block;
+  }
+  .cd-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 6px;
+    display: block;
+  }
+  .cd-sep {
+    font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: rgba(255,255,255,0.15);
+    display: flex; align-items: center; padding: 0 4px;
+  }
+
+  /* PROGRESS BAR */
+  .progress-wrap {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 28px 32px;
+  }
+  .progress-track {
+    height: 4px; background: rgba(255,255,255,0.06); position: relative; overflow: hidden;
+  }
+  .progress-fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: linear-gradient(90deg, var(--purple), var(--accent), var(--cyan));
+    animation: progressLoad 2s ease-out forwards;
+    width: 0%;
+  }
+  @keyframes progressLoad { to { width: 67%; } }
+  .progress-glow {
+    position: absolute; right: 0; top: -4px; bottom: -4px; width: 20px;
+    background: radial-gradient(ellipse, rgba(167,139,250,0.8) 0%, transparent 70%);
+    animation: progressLoad 2s ease-out forwards;
+  }
+
+  /* FEATURE CARDS (bento) */
+  .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .card:hover { border-color: rgba(167,139,250,0.25); }
+  .card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(124,58,237,0.04) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .card:hover::before { opacity: 1; }
+
+  /* COMING SOON OVERLAY on cards */
+  .wip-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,165,0,0.1); border: 1px solid rgba(255,165,0,0.3);
+    padding: 3px 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    color: #FFA500; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .done-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3);
+    padding: 3px 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px;
+    color: var(--green); text-transform: uppercase; margin-bottom: 12px;
+  }
+
+  /* EMAIL FORM */
+  .email-input {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    color: #fff; padding: 14px 18px; font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px; outline: none; width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .email-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(167,139,250,0.12), 0 0 24px rgba(167,139,250,0.08);
+  }
+  .email-input::placeholder { color: rgba(255,255,255,0.28); }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    color: #fff; border: none; cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 14px 28px; white-space: nowrap;
+    box-shadow: 0 0 24px rgba(124,58,237,0.3);
+    transition: box-shadow 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 48px rgba(124,58,237,0.55); transform: translateY(-1px);
+  }
+
+  /* SOCIAL LINKS */
+  .soc-btn {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 28px; background: var(--card); border: 1px solid var(--border);
+    color: #fff; text-decoration: none;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .soc-btn::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+    transition: width 0.3s;
+  }
+  .soc-btn:hover::before { width: 3px; }
+  .soc-btn:hover { transform: translateX(3px); }
+  .soc-yt::before { background: #FF0000; }
+  .soc-yt:hover { border-color: rgba(255,0,0,0.35); background: rgba(255,0,0,0.05); }
+  .soc-tg::before { background: #29B6F6; }
+  .soc-tg:hover { border-color: rgba(41,182,246,0.35); background: rgba(41,182,246,0.05); }
+  .soc-tt::before { background: #fff; }
+  .soc-tt:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+  .arr { font-size: 20px; transition: transform 0.3s; }
+  .soc-btn:hover .arr { transform: translateX(6px); }
+
+  /* SECTION LABEL */
+  .s-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+  }
+  .s-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 64px); letter-spacing: 2px;
+    background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  /* FADE-IN */
+  .fi { opacity: 1; transform: none; }
+
+  /* ANIMATED BG GRID */
+  .grid-lines {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+  }
+
+  /* MONOBANK SUPPORT */
+  .mono-wrap {
+    background: linear-gradient(135deg, #0f0f1a 0%, #0a0a10 100%);
+    border: 1px solid rgba(167,139,250,0.15);
+    padding: 40px; position: relative; overflow: hidden;
+  }
+  .mono-wrap::after {
+    content: ''; position: absolute; top: -60%; right: -30%;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .stat-n {
+    font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  /* ── TABLET  ≤ 1024px ── */
+  @media (max-width: 1024px) {
+    .wrap { padding: 0 24px; }
+    .bento { grid-template-columns: repeat(6, 1fr); }
+    .bento > [style*="span 5"],
+    .bento > [style*="span 7"] { grid-column: span 6 !important; }
+    .bento > [style*="span 4"] { grid-column: span 3 !important; }
+    .bento > [style*="span 12"] { grid-column: span 6 !important; }
+    /* notify + social two-col becomes single col */
+    .notify-social { grid-template-columns: 1fr !important; }
+    /* mono inner grid */
+    .mono-inner { grid-template-columns: 1fr !important; }
+    .mono-qr { display: none !important; }
+  }
+
+  /* ── MOBILE  ≤ 768px ── */
+  @media (max-width: 768px) {
+    /* nav */
+    .nav { padding: 0 16px; height: 56px; }
+    .nav-right { display: none !important; }
+    .status-pill { font-size: 10px; padding: 4px 10px; letter-spacing: 1px; }
+
+    /* wrap */
+    .wrap { padding: 0 16px; }
+
+    /* hero */
+    .hero-section { padding: 100px 0 40px !important; }
+    .hero-tags { flex-wrap: wrap; gap: 8px; }
+
+    /* countdown */
+    .countdown-block { gap: 2px; }
+    .cd-sep { display: none; }
+    .cd-unit { padding: 14px 8px; flex: 1; min-width: 0; }
+    .cd-num { font-size: 36px; }
+    .cd-label { font-size: 9px; letter-spacing: 1px; }
+
+    /* progress */
+    .progress-wrap { padding: 20px 16px; }
+    .progress-header { flex-direction: column !important; align-items: flex-start !important; gap: 8px; }
+    .progress-pct { font-size: 36px !important; }
+
+    /* notify + social */
+    .notify-social { grid-template-columns: 1fr !important; }
+
+    /* email row */
+    .email-row { flex-direction: column !important; }
+    .email-row .btn-primary { width: 100%; }
+
+    /* soc-btn */
+    .soc-btn { padding: 14px 16px; }
+
+    /* bento — all full width */
+    .bento { grid-template-columns: 1fr; gap: 2px; }
+    .bento > * { grid-column: span 1 !important; }
+
+    /* widget icon grid */
+    .widget-icons { grid-template-columns: repeat(2,1fr) !important; }
+
+    /* devlog grid */
+    .devlog-grid { grid-template-columns: 1fr !important; }
+
+    /* monobank */
+    .mono-wrap { padding: 28px 20px; }
+    .mono-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .mono-qr { display: none !important; }
+    .mono-stats { flex-direction: column !important; gap: 12px !important; }
+    .mono-divider { display: none !important; }
+    .stat-n { font-size: 36px; }
+
+    /* footer */
+    .footer-inner { flex-direction: column !important; align-items: flex-start !important; gap: 24px; }
+    .footer-status { align-items: flex-start !important; }
+  }
+
+  /* ── SMALL MOBILE  ≤ 480px ── */
+  @media (max-width: 480px) {
+    .cd-num { font-size: 28px; }
+    .s-title { font-size: 36px !important; }
+    h1 { font-size: clamp(56px, 14vw, 90px) !important; }
+    .btn-primary { font-size: 12px; padding: 12px 20px; letter-spacing: 1px; }
+  }
+</style>
 </head>
 <body>
 
@@ -31,10 +367,10 @@
 </header>
 
 <!-- HERO -->
-<section style="padding: 140px 0 60px; position:relative;z-index:1;">
+<section class="hero-section" style="padding: 140px 0 60px; position:relative;z-index:1;">
 <div class="wrap">
   <div style="max-width:860px;" class="fi">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;">
+    <div class="hero-tags" style="display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.3);text-transform:uppercase;background:var(--card);border:1px solid var(--border);padding:5px 12px;">
         // COMING SOON
       </div>
@@ -43,8 +379,8 @@
     </div>
 
     <h1 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,12vw,180px);line-height:0.88;letter-spacing:2px;">
-      <span style="background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,0.6) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">UHAB</span><br>
-      <span style="background:linear-gradient(135deg,var(--accent) 0%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">UKRAINE SOFT</span>
+      <span style="background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,0.6) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">THE ULTIMATE</span><br>
+      <span style="background:linear-gradient(135deg,var(--accent) 0%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">OBS HUB</span>
     </h1>
 
     <p style="margin-top:28px;font-size:17px;color:rgba(255,255,255,0.48);line-height:1.75;max-width:560px;">
@@ -53,7 +389,7 @@
   </div>
 
   <!-- COUNTDOWN -->
-  <div style="margin-top:52px;" class="fi" style="transition-delay:0.15s;">
+  <div class="fi" style="margin-top:52px;transition-delay:0.15s;">
     <div class="s-label">ОЧІКУВАНИЙ РЕЛІЗ</div>
     <div class="countdown-block" id="countdown">
       <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-label">Днів</span></div>
@@ -69,12 +405,12 @@
   <!-- PROGRESS -->
   <div style="margin-top:40px;" class="fi">
     <div class="progress-wrap">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div class="progress-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
         <div>
           <div class="s-label" style="margin-bottom:4px;">ПРОГРЕС РОЗРОБКИ</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:rgba(255,255,255,0.9);">ALPHA BUILD — 67% ЗАВЕРШЕНО</div>
         </div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:2px;background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">67%</div>
+        <div class="progress-pct" style="font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:2px;background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">67%</div>
       </div>
       <div class="progress-track">
         <div class="progress-fill"></div>
@@ -92,7 +428,7 @@
 <!-- NOTIFY + SOCIAL -->
 <section style="padding:20px 0 60px;position:relative;z-index:1;">
 <div class="wrap">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;" class="fi">
+  <div class="notify-social fi" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
 
     <!-- EMAIL NOTIFY -->
     <div class="card" style="padding:36px;">
@@ -103,7 +439,7 @@
       <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:24px;">
         Залиш email — надішлемо повідомлення коли uHab вийде у реліз. Без спаму, лише одне повідомлення.
       </p>
-      <div style="display:flex;gap:2px;" id="emailForm">
+      <div class="email-row" style="display:flex;gap:2px;" id="emailForm">
         <input class="email-input" type="email" placeholder="твій@email.com" id="emailInput">
         <button class="btn-primary" onclick="handleSubscribe()">ПІДПИСАТИСЬ</button>
       </div>
@@ -193,7 +529,7 @@
       <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;max-width:460px;">
         Редактор віджетів з drag-and-drop, підтримка HTML/CSS шаблонів, живий превью та бібліотека готових пресетів.
       </p>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:20px;">
+      <div class="widget-icons" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:20px;">
         <div style="background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);padding:10px;text-align:center;">
           <div style="font-size:18px;margin-bottom:4px;">🎉</div>
           <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);">ALERTS</div>
@@ -264,7 +600,7 @@
     <!-- DEV LOG WIDE -->
     <div class="card" style="grid-column:span 12;padding:32px;">
       <div class="s-label">ОСТАННІЙ ДЕВЛОГ</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:12px;">
+      <div class="devlog-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:12px;">
         <div style="padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--border);">
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.25);margin-bottom:8px;">15 ЛИП 2025</div>
           <div style="font-weight:600;font-size:14px;margin-bottom:6px;">Запуск Alpha-тестування</div>
@@ -290,14 +626,14 @@
 <section style="padding:60px 0;position:relative;z-index:1;">
 <div class="wrap fi">
   <div class="mono-wrap">
-    <div style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;">
+    <div class="mono-inner" style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;">
       <div>
         <div class="s-label">// ПІДТРИМКА РОЗРОБКИ</div>
         <h2 class="s-title">SUPPORT<br>DEVELOPMENT</h2>
         <p style="font-size:15px;color:rgba(255,255,255,0.45);margin-top:16px;line-height:1.8;max-width:480px;">
           uHab — повністю безкоштовний проект. Розробляється у вільний час. Якщо хочеш прискорити реліз — підтримай донатом. Кожна гривня йде напряму в розробку.
         </p>
-        <div style="display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap;">
+        <div class="mono-stats" style="display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap;">
           <button class="btn-primary" style="padding:14px 36px;">
             💳&nbsp; ЗАДОНАТИТИ
           </button>
@@ -306,7 +642,7 @@
               <div class="stat-n">₴14,280</div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:2px;">ЗІБРАНО</div>
             </div>
-            <div style="width:1px;height:50px;background:var(--border);"></div>
+            <div class="mono-divider" style="width:1px;height:50px;background:var(--border);"></div>
             <div>
               <div class="stat-n">238</div>
               <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:2px;">ДОНАТЕРІВ</div>
@@ -315,7 +651,7 @@
         </div>
       </div>
       <!-- QR -->
-      <div style="text-align:center;">
+      <div class="mono-qr" style="text-align:center;">
         <div style="display:inline-block;padding:16px;background:#fff;">
           <svg width="120" height="120" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
             <rect fill="#000" x="0" y="0" width="3" height="3"/>
@@ -347,16 +683,16 @@
 <!-- FOOTER -->
 <footer style="border-top:1px solid var(--border);padding:40px 0;position:relative;z-index:1;">
 <div class="wrap">
-  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
+  <div class="footer-inner" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
     <div>
       <div class="logo" style="font-size:24px;margin-bottom:6px;">uHab</div>
       <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);">© 2025 · Зроблено для стрімерів України</div>
     </div>
     <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);text-align:center;line-height:2;">
-      support@uhab.app<br>
+      <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9ae9efeaeaf5e8eedaeff2fbf8b4fbeaea">[email&#160;protected]</a><br>
       <span style="color:rgba(255,255,255,0.1);">Windows 10/11 · OBS 29+</span>
     </div>
-    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
+    <div class="footer-status" style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
       <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:2px;">СТАТУС СЕРВІСІВ</div>
       <div style="display:flex;gap:10px;">
         <div style="display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);">
@@ -374,7 +710,7 @@
 </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // COUNTDOWN — target date
   const target = new Date('2025-09-01T00:00:00');
   function updateCountdown() {
@@ -420,19 +756,14 @@
 
   // SCROLL FADE-IN
   const io = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        e.target.style.transitionDelay = (e.target.dataset.d || 0) + 's';
-        e.target.classList.add('in');
-      }
-    });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.fi').forEach((el, i) => io.observe(el));
+  document.querySelectorAll('.fi').forEach(el => io.observe(el));
 
   // HEADER BLUR
   window.addEventListener('scroll', () => {
     document.querySelector('header').style.background =
-      window.scrollY > 30 ? 'rgba(8,8,10,0.95)' : 'rgba(8,8,10,0.8)';
+      window.scrollY > 30 ? 'rgba(8,8,10,0.97)' : 'rgba(8,8,10,0.8)';
   });
 </script>
 </body>
