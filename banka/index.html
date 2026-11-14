@@ -1,33 +1,26 @@
 <!doctype html>
 <html lang="uk">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Новий руль. Більше драйву.</title>
-  <meta name="description" content="Збір на ігровий руль. Ціль — 20 000 ₴. Долучайся!">
-  <link rel="icon" href="/images/favicon.ico">
-  <link rel="stylesheet" href="/banka/style.css?v=logo-3">
-  <script>if(new URLSearchParams(location.search).get('embed')==='1')document.documentElement.classList.add('embedded');</script>
-  <script src="/banka/config.js?v=mityplay-1" defer></script>
-  <script src="/banka/script.js?v=mityplay-1" defer></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Новий руль. Більше драйву — MityPlay</title>
+<meta name="description" content="Збір на ігровий руль для MityPlay. Ціль — 20 000 ₴. Долучайся!">
+<link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/banka/style.css?v=racing-4">
+<script>if(new URLSearchParams(location.search).get('embed')==='1')document.documentElement.classList.add('embedded');</script>
+<script src="/banka/config.js?v=goal-4" defer></script><script src="/banka/script.js?v=goal-4" defer></script>
 </head>
-<body>
-  <main>
-    <section class="banner" aria-labelledby="heading">
-      <img class="campaign-logo" src="/images/logo.png" width="176" height="176" alt="Логотип каналу" fetchpriority="high">
-      <h1 id="heading">Новий руль.<br>Більше <span>драйву.</span></h1>
-    </section>
-    <section class="widget" aria-label="Збір на руль">
-      <div class="stats" aria-live="polite"><div><span>Вже зібрано</span><strong id="collected">—</strong></div><div><span>Ціль збору</span><strong id="goal">—</strong></div><div><span>Залишилось</span><strong id="remaining">—</strong></div></div>
-      <div class="track" id="progress" role="progressbar" aria-label="Прогрес збору" aria-valuemin="0" aria-valuemax="100"><div id="fill"></div></div>
-      <div class="progress-caption"><span id="status">Завантажуємо дані банки…</span><span id="percent">—</span></div>
-      <form id="donation" action="https://send.monobank.ua/jar/98Q3HB3o1D" method="get" target="_blank" rel="noopener noreferrer">
-        <label for="amount">На скільки поповнимо?</label>
-        <div class="presets"><button type="button" data-amount="50" aria-pressed="false">50 ₴</button><button type="button" data-amount="100" aria-pressed="true" class="selected">100 ₴</button><button type="button" data-amount="200" aria-pressed="false">200 ₴</button><button type="button" data-amount="500" aria-pressed="false">500 ₴</button></div>
-        <div class="pay-row"><div class="input-wrap"><input id="amount" name="a" type="number" min="1" max="999999" step="0.01" value="100" required inputmode="decimal" aria-label="Сума поповнення у гривнях"><span>₴</span></div><button class="donate" type="submit">Поповнити банку <span>↗</span></button></div>
-        <p class="note">Оплата на захищеній сторінці Monobank. Суму можна перевірити перед переказом.</p>
-      </form>
-    </section>
-  </main>
-</body>
-</html>
+<body><main>
+<header class="topbar"><a href="/" class="brand">MITY<span>PLAY</span></a><span class="edition">COMMUNITY / SIM RACING</span><a href="#donation" class="top-link">Долучитися ↗</a></header>
+<section class="banner" aria-labelledby="heading">
+<div class="hero-copy"><p class="eyebrow">НАСТУПНИЙ РІВЕНЬ СТРІМІВ</p><h1 id="heading">Новий руль.<br>Більше <span>драйву.</span></h1><p class="intro">Збираємо на ігровий руль для MityPlay. Більше поворотів, емоцій і гоночних моментів — разом із тобою.</p><div class="tags"><span>SIM RACING</span><span>ЗА ПІДТРИМКИ СПІЛЬНОТИ</span></div></div>
+<div class="racing-art" aria-hidden="true"><div class="orbit-ring"></div><div class="wheel"><i></i><b>MP<small>RACING</small></b></div><span class="art-label">READY FOR THE NEXT LAP</span><span class="art-number">01</span></div>
+</section>
+<section class="widget" aria-label="Збір на руль">
+<div class="goal-panel"><div><p class="eyebrow">ОДНА СПІЛЬНОТА. СПІЛЬНА ЦІЛЬ.</p><span class="goal-label">Ціль збору</span><strong id="goal">20 000 ₴</strong><p class="goal-description">Твоя підтримка наближає новий гоночний сетап.</p></div><img class="campaign-logo" src="/images/logo.png" width="112" height="112" alt="Логотип каналу MityPlay"></div>
+<form id="donation" action="https://send.monobank.ua/jar/98Q3HB3o1D" method="get" target="_blank" rel="noopener noreferrer">
+<label for="amount">На скільки поповнимо?</label>
+<div class="presets"><button type="button" data-amount="50" aria-pressed="false">50 ₴</button><button type="button" data-amount="100" aria-pressed="true" class="selected">100 ₴</button><button type="button" data-amount="200" aria-pressed="false">200 ₴</button><button type="button" data-amount="500" aria-pressed="false">500 ₴</button></div>
+<div class="pay-row"><div class="input-wrap"><input id="amount" name="a" type="number" min="1" max="999999" step="0.01" value="100" required inputmode="decimal" aria-label="Сума поповнення у гривнях"><span>₴</span></div><button class="donate" type="submit">Поповнити банку <span>↗</span></button></div>
+<p class="note">Оплата на захищеній сторінці Monobank. Суму можна перевірити перед переказом.</p>
+</form></section>
+<footer><span>Кожен внесок — ще один поворот до цілі.</span><a href="https://send.monobank.ua/jar/98Q3HB3o1D" target="_blank" rel="noopener noreferrer">Відкрити в Monobank ↗</a></footer>
+</main></body></html>
